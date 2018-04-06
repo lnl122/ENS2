@@ -24,5 +24,13 @@ namespace ENS2
         {
             InitializeComponent();
         }
+
+        // открыть модальную форму ввода параметров игрока и логона в движке
+        private void MenuItem_Engine_Logon_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = (MenuItem)sender;
+            MessageBox.Show(menuItem.Header.ToString());
+            // 
+        }
     }
 }

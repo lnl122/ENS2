@@ -7,6 +7,36 @@
         mc:Ignorable="d"
         Title="ENS2" Height="450" Width="800">
     <Grid>
-        
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="ДВИЖОК" >
+                <MenuItem Header="Выполнить вход..." Click="MenuItem_Engine_Logon_Click" />
+                <MenuItem Header="Выйти из движка" IsEnabled="False" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="ИГРА" IsEnabled="False" >
+                <MenuItem Header="Подключиться к игре..." ></MenuItem>
+                <MenuItem Header="Отключиться от игры" ></MenuItem>
+                <Separator />
+                <MenuItem Header="Смотреть статистику" ></MenuItem>                
+            </MenuItem>
+            <MenuItem Header="ЗАДАНИЕ" IsEnabled="False" >
+                <MenuItem Header="Создать новое" ></MenuItem>
+                <MenuItem Header="Дублировать текущее" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="СЕРВЕР" IsEnabled="False" >
+                <MenuItem Header="Подключиться к серверу..." ></MenuItem>
+                <MenuItem Header="Отключиться от сервера" ></MenuItem>
+                <Separator />
+                <MenuItem Header="Создать сервер" ></MenuItem>
+                <MenuItem Header="Остановить сервер" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="НАСТРОЙКИ" IsEnabled="False" >
+                <MenuItem Header="Настройки..." ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="СПРАВКА" IsEnabled="False" >
+                <MenuItem Header="О программе" ></MenuItem>
+                <Separator />
+                <MenuItem Header="Онлайн-справка" IsEnabled="False" />
+            </MenuItem>            
+        </Menu>
     </Grid>
 </Window>
