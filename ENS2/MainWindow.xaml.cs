@@ -29,8 +29,16 @@ namespace ENS2
         private void MenuItem_Engine_Logon_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = (MenuItem)sender;
-            MessageBox.Show(menuItem.Header.ToString());
-            // 
+            LogonEngineWindow LogonWindow = new LogonEngineWindow();
+
+            if (LogonWindow.ShowDialog() == true)
+            {
+                MessageBox.Show("Попытка авторизации");
+            }
+            else
+            {
+                MessageBox.Show("Авторизация не пройдена");
+            }
         }
     }
 }
