@@ -31,14 +31,8 @@ namespace ENS2
             MenuItem menuItem = (MenuItem)sender;
             LogonEngineWindow LogonWindow = new LogonEngineWindow();
 
-            if (LogonWindow.ShowDialog() == true)
-            {
-                MessageBox.Show("Попытка авторизации");
-            }
-            else
-            {
-                MessageBox.Show("Авторизация не пройдена");
-            }
+            LogonWindow.ShowDialog();
+
         }
     }
 }

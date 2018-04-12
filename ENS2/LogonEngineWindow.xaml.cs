@@ -1,4 +1,6 @@
-﻿using System;
+﻿// при инициализации читать дефолтные имя и пасс из настроек
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,12 +23,19 @@ namespace ENS2
     {
         public LogonEngineWindow()
         {
+            //
             InitializeComponent();
         }
 
         private void Click_OK(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Нажали ОК");
+            // создать экз юзера
+            // попробовать войти
+            // если нет - сообщить и вернуться
+            // если да - сохранить во внешних настройках 
+            //         - заполнить инфу в юзере
+            //         - передать в движек
+            //         - обновить форму основного окна
         }
     }
 }

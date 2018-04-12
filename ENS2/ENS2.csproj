@@ -66,6 +66,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ENUser.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="LogonEngineWindow.xaml.cs">
       <DependentUpon>LogonEngineWindow.xaml</DependentUpon>
     </Compile>
