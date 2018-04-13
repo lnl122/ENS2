@@ -1,4 +1,5 @@
-﻿// при инициализации читать дефолтные имя и пасс из настроек
+﻿// Copyright © 2018 Antony S. Ovsyannikov aka lnl122 aka полвторого@en
+// License: http://opensource.org/licenses/MIT
 
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,12 @@ namespace ENS2
     {
         public LogonEngineWindow()
         {
-            //
             InitializeComponent();
+            this.Login.Text = Properties.Settings.Default.User_Name;
+            this.Password.Text = Properties.Settings.Default.User_Password;
         }
 
-        private void Click_OK(object sender, RoutedEventArgs e)
+        private void Button_ClickOK(object sender, RoutedEventArgs e)
         {
             // создать экз юзера
             // попробовать войти
@@ -36,6 +38,9 @@ namespace ENS2
             //         - заполнить инфу в юзере
             //         - передать в движек
             //         - обновить форму основного окна
+            MessageBox.Show("OK");
+            this.Close();
         }
+
     }
 }

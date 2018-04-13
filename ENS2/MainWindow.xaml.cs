@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright © 2018 Antony S. Ovsyannikov aka lnl122 aka полвторого@en
+// License: http://opensource.org/licenses/MIT
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

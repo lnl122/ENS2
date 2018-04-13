@@ -1,7 +1,8 @@
-﻿// Copyright © 2017 Antony S. Ovsyannikov aka lnl122
+﻿// Copyright © 2018 Antony S. Ovsyannikov aka lnl122 aka полвторого@en
 // License: http://opensource.org/licenses/MIT
 
-// ! есть константы по тексту - вынести во внешние настройки
+// 2do
+// ! есть константы по тексту - вынести во внешние настройки LeadZero
 
 using System;
 
@@ -49,8 +50,8 @@ namespace ENS2
                 {
                     if (!isReady)
                     {
-                        string LogPath1 = CheckCreateFolder("Log") + System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName + ".log";
-                        PathToPages = CheckCreateFolder("Pages");
+                        string LogPath1 = CheckCreateFolder(Properties.Settings.Default.Log_LogfileFolder) + System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName + Properties.Settings.Default.Log_LogfileExtention;
+                        PathToPages = CheckCreateFolder(Properties.Settings.Default.Log_PagesFolder);
                         logfile = new System.IO.StreamWriter(System.IO.File.AppendText(LogPath1).BaseStream);
                         logfile.AutoFlush = true;
                         isReady = true;
@@ -93,7 +94,7 @@ namespace ENS2
                     var dn = DateTime.Now;
                     string path = PathToPages + ModuleName.Replace(": ", "") + "_" + LeadZero(fileidx) + "_" +
                         LeadZero(dn.Year) + LeadZero(dn.Month) + LeadZero(dn.Day) +
-                        LeadZero(dn.Hour) + LeadZero(dn.Minute) + LeadZero(dn.Second) + ".file";
+                        LeadZero(dn.Hour) + LeadZero(dn.Minute) + LeadZero(dn.Second) + Properties.Settings.Default.Log_PagesExtention;
                     System.IO.File.WriteAllText(path, text, System.Text.Encoding.UTF8);
 
                 }
