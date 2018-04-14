@@ -94,5 +94,53 @@ namespace ENS2.Properties {
                 this["Engine_Domains"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User_Id {
+            get {
+                return ((string)(this["User_Id"]));
+            }
+            set {
+                this["User_Id"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User_Team {
+            get {
+                return ((string)(this["User_Team"]));
+            }
+            set {
+                this["User_Team"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User_TeamId {
+            get {
+                return ((string)(this["User_TeamId"]));
+            }
+            set {
+                this["User_TeamId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("game.en.cx")]
+        public string User_Domain {
+            get {
+                return ((string)(this["User_Domain"]));
+            }
+            set {
+                this["User_Domain"] = value;
+            }
+        }
     }
 }

@@ -23,5 +23,17 @@
     <Setting Name="Engine_Domains" Type="System.String" Scope="User">
       <Value Profile="(Default)">game.en.cx</Value>
     </Setting>
+    <Setting Name="User_Id" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="User_Team" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="User_TeamId" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="User_Domain" Type="System.String" Scope="User">
+      <Value Profile="(Default)">game.en.cx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
