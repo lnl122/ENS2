@@ -4,6 +4,7 @@
 // 2do
 // - Logon - выбор случайного домена из списка через ; из настроек
 // - Logon - проверка домена на валидность/присутствие
+// - Logon - добавить домен пользвователя в список известных доменов
 
 using System;
 using System.Collections.Generic;
@@ -114,9 +115,10 @@ namespace ENS2
                 Properties.Settings.Default.User_Name = UserName;
                 Properties.Settings.Default.User_Password = UserPass;
                 Properties.Settings.Default.User_Id = UserId;
-                Properties.Settings.Default.User_Domain = UserDomain;
+                Properties.Settings.Default.User_Domain = UserDomain; // 2do
                 Properties.Settings.Default.User_Team = UserTeam;
                 Properties.Settings.Default.User_TeamId = UserTeamId;
+                Properties.Settings.Default.Save();
                 isLoggedUser = true;
                 return true;
             }
