@@ -123,21 +123,45 @@ namespace ENS2
             return false;
         }
 
-        public string GetUserId(string page2)
+        public string GetUserId(string page)
         {
-            return "123456";
+            string p = page.Substring(page.IndexOf("&uid=")+5);
+            p = p.Substring(0, p.IndexOf("\""));
+            return p;
         }
-        public string GetUserDomain(string page2)
+
+        public string GetUserDomain(string page)
         {
-            return "123456";
+            string p = page.Substring(page.IndexOf("Прописка:") + 9);
+            p = p.Substring(p.IndexOf("href=\"") + 6);
+            p = p.Substring(0, p.IndexOf("/\""));
+            p = p.Replace("http://", "");
+            return p;
         }
-        public string GetUserTeam(string page2)
+
+        public string GetUserTeam(string page)
         {
-            return "123456";
+            int idx = page.IndexOf("/Teams/TeamDetails.aspx?tid=");
+            if (idx == -1)
+            {
+                return "";  
+            }
+            string p = page.Substring(idx + 28);
+            p = p.Substring(p.IndexOf(">")+1);
+            p = p.Substring(0, p.IndexOf("<"));
+            return p;
         }
-        public string GetUserTeamId(string page2)
+
+        public string GetUserTeamId(string page)
         {
-            return "123456";
+            int idx = page.IndexOf("/Teams/TeamDetails.aspx?tid=");
+            if(idx == -1)
+            {
+                return "";
+            }
+            string p = page.Substring(idx + 28);
+            p = p.Substring(0, p.IndexOf("\""));
+            return p;
         }
 
         /// <summary>
