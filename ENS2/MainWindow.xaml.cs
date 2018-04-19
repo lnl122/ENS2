@@ -31,11 +31,23 @@ namespace ENS2
         // открыть модальную форму ввода параметров игрока и логона в движке
         private void MenuItem_Engine_Logon_Click(object sender, RoutedEventArgs e)
         {
-            MenuItem menuItem = (MenuItem)sender;
+            //MenuItem menuItem = (MenuItem)sender;
             LogonEngineWindow LogonWindow = new LogonEngineWindow();
-
             LogonWindow.ShowDialog();
+            UpdateActivityMenuItem();
+        }
 
+        private void MenuItem_Engine_Logoff_Click(object sender, RoutedEventArgs e)
+        {
+            (Engine.Instance).Logoff();
+            UpdateActivityMenuItem();
+        }
+
+        private void UpdateActivityMenuItem()
+        {
+            bool isLogged = Engine.isLoggedUser;
+            MenuItemId_Logon.IsEnabled = !isLogged;
+            MenuItemId_Logoff.IsEnabled = isLogged;
         }
     }
 }

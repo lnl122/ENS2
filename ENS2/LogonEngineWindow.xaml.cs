@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace ENS2
 {
-    /// <summary>
-    /// Логика взаимодействия для LogonEngineWindow.xaml
-    /// </summary>
     public partial class LogonEngineWindow : Window
     {
         public LogonEngineWindow()
@@ -31,16 +28,16 @@ namespace ENS2
 
         private void Button_ClickOK(object sender, RoutedEventArgs e)
         {
-            // создать экз юзера
-            // попробовать войти
-            // если нет - сообщить и вернуться
-            // если да - сохранить во внешних настройках 
-            //         - заполнить инфу в юзере
-            //         - передать в движек
-            //         - обновить форму основного окна
-            MessageBox.Show("OK");
-            this.Close();
+            Engine EN = Engine.Instance;
+            bool sussefulLogon = EN.Logon(this.Login.Text, this.Password.Text);
+            if (sussefulLogon)
+            {
+                this.DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Не удалось выполнить логон в движке.\r\n\r\nПроверьте логин и пароль, всяко бывает =)", "Ошибка логона", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
-
     }
 }

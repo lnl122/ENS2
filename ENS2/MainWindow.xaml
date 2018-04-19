@@ -9,14 +9,12 @@
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="ДВИЖОК" >
-                <MenuItem Header="Выполнить вход..." Click="MenuItem_Engine_Logon_Click" />
-                <MenuItem Header="Выйти из движка" IsEnabled="False" ></MenuItem>
-            </MenuItem>
-            <MenuItem Header="ИГРА" IsEnabled="False" >
-                <MenuItem Header="Подключиться к игре..." ></MenuItem>
-                <MenuItem Header="Отключиться от игры" ></MenuItem>
+                <MenuItem Name="MenuItemId_Logon" Header="Выполнить вход..." IsEnabled="True" Click="MenuItem_Engine_Logon_Click"></MenuItem>
+                <MenuItem Name="MenuItemId_Logoff" Header="Выйти из движка" IsEnabled="False" Click="MenuItem_Engine_Logoff_Click"></MenuItem>
                 <Separator />
-                <MenuItem Header="Смотреть статистику" ></MenuItem>                
+                <MenuItem Header="Подключиться к игре..." IsEnabled="False"></MenuItem>
+                <MenuItem Header="Смотреть статистику" IsEnabled="False"></MenuItem>
+                <MenuItem Header="Отключиться от игры" IsEnabled="False"></MenuItem>
             </MenuItem>
             <MenuItem Header="ЗАДАНИЕ" IsEnabled="False" >
                 <MenuItem Header="Создать новое" ></MenuItem>

@@ -1,11 +1,6 @@
 ﻿// Copyright © 2018 Antony S. Ovsyannikov aka lnl122 aka полвторого@en
 // License: http://opensource.org/licenses/MIT
 
-// 2do
-// - Logon - выбор случайного домена из списка через ; из настроек
-// - Logon - проверка домена на валидность/присутствие
-// - Logon - добавить домен пользвователя в список известных доменов
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +14,7 @@ namespace ENS2
     interface IEngine
     {
         bool Logon(string user, string pass, string domain="");
+        void Logoff();
         //List<GameInfo> GetGameList();
         //void SetGame(GameInfo selected_game);
         //string GetPage(string url);// походу он станет приватным
@@ -107,7 +103,7 @@ namespace ENS2
             {
                 UserName = user;
                 UserPass = pass;
-                string page2 = GetPage("http://" + domain + "/UserDetails.aspx");
+                string page2 = GetPage("http://" + domainToLogon + "/UserDetails.aspx");
                 UserId = GetUserId(page2);
                 UserDomain = GetUserDomain(page2);
                 UserTeam = GetUserTeam(page2);
@@ -123,6 +119,13 @@ namespace ENS2
                 return true;
             }
             return false;
+        }
+
+        public void Logoff()
+        {
+            isLoggedUser = false;
+            isLoggedInGame = false;
+            isReady = false;
         }
 
         public string GetUserId(string page)

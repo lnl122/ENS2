@@ -78,12 +78,12 @@ namespace Tests
         //[TestMethod]
         public void Engine_Logon_1()
         {
-            Assert.IsTrue(EN.Logon("полвторого", "ovs122", "game.en.cx"));
+            Assert.IsTrue(EN.Logon("полвторого", "пароль", "game.en.cx"));
         }
         //[TestMethod]
         public void Engine_Logon_2()
         {
-            Assert.IsFalse(EN.Logon("полвторого122", "ovs122", "game.en.cx"));
+            Assert.IsFalse(EN.Logon("полвторого122", "пароль", "game.en.cx"));
         }
         [TestMethod]
         public void Engine_GetUserId_1()
