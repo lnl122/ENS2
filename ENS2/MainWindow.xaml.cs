@@ -45,9 +45,13 @@ namespace ENS2
 
         private void UpdateActivityMenuItem()
         {
-            bool isLogged = Engine.isLoggedUser;
-            MenuItemId_Logon.IsEnabled = !isLogged;
-            MenuItemId_Logoff.IsEnabled = isLogged;
+            bool isLoggedUser = Engine.isLoggedUser;
+            bool isLoggedInGame = Engine.isLoggedInGame;
+            MenuItemId_Logon.IsEnabled = !isLoggedUser;
+            MenuItemId_Logoff.IsEnabled = isLoggedUser;
+            MenuItemId_GameConnect.IsEnabled = isLoggedUser && !isLoggedInGame;
+            MenuItemId_GameStats.IsEnabled = isLoggedInGame;
+            MenuItemId_GameDisconnect.IsEnabled = isLoggedInGame;
         }
     }
 }

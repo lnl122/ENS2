@@ -13,6 +13,7 @@ namespace Tests
     {
         public Engine EN = Engine.Instance;
 
+        /*
         [TestMethod]
         public void Engine_isLogonSussefully_1()
         {
@@ -144,6 +145,55 @@ namespace Tests
         {
             string page = System.IO.File.ReadAllText(@"..\..\TestEnginePages\game_en_cx_UserDetials_woTeam.html").Replace("\n", " ");
             Assert.AreEqual("", EN.GetUserTeamId(page));
+        }
+        */
+        /*
+        tselina_en_cx_GameList_zone1_Open
+        tselina_en_cx_GameList_zone3_Blank
+        tselina_en_cx_GameList_zone7_Close
+             
+             */
+        [TestMethod]
+        public void Engine_GetGamesLinks_1()
+        {
+            string page = System.IO.File.ReadAllText(@"..\..\TestEnginePages\tselina_en_cx_GameList_zone1_Open.html").Replace("\n", " ");
+            List<string> res = EN.GetGamesLinks(page);
+            Assert.AreEqual(3, res.Count);
+        }
+        [TestMethod]
+        public void Engine_GetGamesLinks_1_1()
+        {
+            string page = System.IO.File.ReadAllText(@"..\..\TestEnginePages\tselina_en_cx_GameList_zone1_Open.html").Replace("\n", " ");
+            List<string> res = EN.GetGamesLinks(page);
+            Assert.IsTrue(res.Contains("http://odessa.en.cx/GameDetails.aspx?gid=30040"));
+        }
+        [TestMethod]
+        public void Engine_GetGamesLinks_1_2()
+        {
+            string page = System.IO.File.ReadAllText(@"..\..\TestEnginePages\tselina_en_cx_GameList_zone1_Open.html").Replace("\n", " ");
+            List<string> res = EN.GetGamesLinks(page);
+            Assert.IsTrue(res.Contains("http://magadan.en.cx/GameDetails.aspx?gid=60869"));
+        }
+        [TestMethod]
+        public void Engine_GetGamesLinks_1_3()
+        {
+            string page = System.IO.File.ReadAllText(@"..\..\TestEnginePages\tselina_en_cx_GameList_zone1_Open.html").Replace("\n", " ");
+            List<string> res = EN.GetGamesLinks(page);
+            Assert.IsTrue(res.Contains("http://moscow.en.cx/GameDetails.aspx?gid=58144"));
+        }
+        [TestMethod]
+        public void Engine_GetGamesLinks_2()
+        {
+            string page = System.IO.File.ReadAllText(@"..\..\TestEnginePages\tselina_en_cx_GameList_zone3_Blank.html").Replace("\n", " ");
+            List<string> res = EN.GetGamesLinks(page);
+            Assert.AreEqual(0, res.Count);
+        }
+        [TestMethod]
+        public void Engine_GetGamesLinks_3()
+        {
+            string page = System.IO.File.ReadAllText(@"..\..\TestEnginePages\tselina_en_cx_GameList_zone7_Close.html").Replace("\n", " ");
+            List<string> res = EN.GetGamesLinks(page);
+            Assert.AreEqual(0, res.Count);
         }
 
     }

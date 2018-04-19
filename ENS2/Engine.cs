@@ -15,11 +15,28 @@ namespace ENS2
     {
         bool Logon(string user, string pass, string domain="");
         void Logoff();
+        List<GameInfo> GetGames();
         //List<GameInfo> GetGameList();
         //void SetGame(GameInfo selected_game);
         //string GetPage(string url);// походу он станет приватным
         //string GetLevelPage(int level = -1);
         //string SendAnswer(string answer, int level = -1);
+    }
+
+    public class GameInfo
+    {
+        public string type { get; private set; }
+        public bool isCommand { get; private set; }
+        public bool isStorm { get; private set; }
+        public string begin_date { get; private set; }
+        public string name { get; private set; }
+        public string link { get; private set; }
+        public bool isPlayable { get; private set; }
+
+        public GameInfo(string url)
+        {
+            // получить из урла все параметры
+        }
     }
 
     public sealed class Engine : IEngine
@@ -39,6 +56,9 @@ namespace ENS2
                 return instance;
             }
         }
+
+        // константы
+        private static int[] gameTypes = new int[] { 0, 7, 1, 9 }; // Схватка, Точки, МШ, Викторина
 
         // лог
         private static Log Log = new Log("Engine");
@@ -126,6 +146,62 @@ namespace ENS2
             isLoggedUser = false;
             isLoggedInGame = false;
             isReady = false;
+        }
+
+        public List<GameInfo> GetGames()
+        {
+            List<GameInfo> result = new List<GameInfo>();
+            if (isLoggedUser)
+            {
+                foreach (int num in gameTypes)
+                {
+                    result.AddRange(GetGamesByType(num));
+                }
+            }
+            return result;
+        }
+
+        public List<GameInfo> GetGamesByType(int v)
+        {
+            List<GameInfo> result = new List<GameInfo>();
+            // http://tselina.en.cx/UserDetails.aspx?zone=0&tab=1&uid=1509025
+            string url = "http://" + UserDomain + "/UserDetails.aspx?zone=" + v.ToString() + "&tab=1&uid=" + UserId;
+            string page = GetPageClean(url);
+
+            List<string> links = GetGamesLinks(page);
+            foreach (string link in links)
+            {
+                result.Add(new GameInfo(link));
+            }
+            return result;
+        }
+
+        public List<string> GetGamesLinks(string page)
+        {
+            List<string> result = new List<string>();
+            int idx = page.IndexOf("/UserDetails.aspx?tab=0&zone=1&uid=");
+            if(idx > 0)
+            {
+                string p = page.Substring(idx);
+                int idx1 = p.IndexOf("/GameDetails.aspx?gid=") - 100; // сто символов назад - для наверняка
+                int idx2 = p.LastIndexOf("/GameDetails.aspx?gid=") + 100; // сто символов вперед - для наверняка
+                if((idx1 > 0) && (idx2 > 0) && (idx1 < idx2))
+                {
+                    p = p.Substring(idx1, idx2-idx1);
+                    string[] arr = System.Text.RegularExpressions.Regex.Split(p, "href=\"");
+                    foreach(string str in arr)
+                    {
+                        string str1 = str.Substring(0, str.IndexOf("\""));
+                        if (str1.Contains("/GameDetails.aspx?gid="))
+                        {
+                            result.Add(str1);
+                        }
+                    }
+
+                }
+
+            }
+            return result;
         }
 
         public string GetUserId(string page)
