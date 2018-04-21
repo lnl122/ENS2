@@ -51,7 +51,130 @@ namespace ENS2
             p = p.Substring(0, p.IndexOf("\""));
             return p;
         }
-        
+
+        public static string GetGameType(string page)
+        {
+            string result = "???";
+            int idx = page.IndexOf("<span>Игра</span>:</span>"); //25
+            if (idx > 0)
+            {
+                string p = page.Substring(idx + 25);
+                idx = p.IndexOf("</span>");
+                if (idx > 0)
+                {
+                    p = p.Substring(0, idx);
+                    idx = p.LastIndexOf(">");
+                    if (idx > 0)
+                    {
+                        result = p.Substring(idx + 1);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static bool GetIsCommand(string page)
+        {
+            bool result = false;
+            int idx = page.IndexOf("<span>Играем</span>:</span>"); //27
+            if (idx > 0)
+            {
+                string p = page.Substring(idx + 27);
+                idx = p.IndexOf("</span>");
+                if (idx > 0)
+                {
+                    p = p.Substring(0, idx);
+                    if(p.IndexOf("Командами") > 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static bool GetGameIsStorm(string page)
+        {
+            bool result = false;
+            int idx = page.IndexOf("<span>Последовательность прохождения</span>:</span>"); //51
+            if (idx > 0)
+            {
+                string p = page.Substring(idx + 51);
+                idx = p.IndexOf("</span>");
+                if (idx > 0)
+                {
+                    p = p.Substring(0, idx);
+                    if (p.IndexOf("Штурмовая") > 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static string GetGameBeginDate(string page)
+        {
+            string result = "???";
+            int idx = page.IndexOf("<span>Начало игры</span>:</span>"); //32
+            if (idx > 0)
+            {
+                string p = page.Substring(idx + 32);
+                idx = p.IndexOf(" (<a");
+                if (idx > 0)
+                {
+                    p = p.Substring(0, idx);
+                    idx = p.LastIndexOf(">");
+                    if (idx > 0)
+                    {
+                        result = p.Substring(idx + 1);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static string GetGameName(string page)
+        {
+            string result = "???";
+            int idx = page.IndexOf("lnkGameTitle"); //12
+            if (idx > 0)
+            {
+                string p = page.Substring(idx + 12);
+                idx = p.IndexOf("</a>");
+                if (idx > 0)
+                {
+                    p = p.Substring(0, idx);
+                    idx = p.LastIndexOf(">");
+                    if (idx > 0)
+                    {
+                        result = p.Substring(idx + 1);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static string GetGameLink(string page)
+        {
+            // http://magadan.en.cx/GameDetails.aspx?gid=60869
+            // http://magadan.en.cx/gameengines/encounter/play/60869
+            return page.Replace("GameDetails.aspx?gid=", "gameengines/encounter/play/");
+        }
+
+        public static bool GetGameIsPlayable(string page)
+        {
+            bool result = false;
+            int idx = page.IndexOf("GameDetail_GameEnterBox_divEnterGameHolder");
+            if(idx > 0)
+            {
+                result = true;
+            }
+            return result;
+        }
+
+
+
         /// <summary>
         /// проверяет страницу на предмет поиска строки с logout
         /// </summary>

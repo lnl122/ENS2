@@ -28,7 +28,7 @@ namespace ENS2
         public string Type { get; private set; }
         public bool IsCommand { get; private set; }
         public bool IsStorm { get; private set; }
-        public string Begin_date { get; private set; }
+        public string BeginDate { get; private set; }
         public string Name { get; private set; }
         public string Link { get; private set; }
         public bool IsPlayable { get; private set; }
@@ -41,7 +41,35 @@ namespace ENS2
         {
             // пример входящей строки - http://pnz.en.cx/GameDetails.aspx?gid=59465
             string page = (Engine.Instance).GetPageClean(url);
+            Type = EngineParsePage.GetGameType(page);
+            IsCommand = EngineParsePage.GetIsCommand(page);
+            IsStorm = EngineParsePage.GetGameIsStorm(page);
+            BeginDate = EngineParsePage.GetGameBeginDate(page);
+            Name = EngineParsePage.GetGameName(page);
+            Link = url.Replace("GameDetails.aspx?gid=", "gameengines/encounter/play/"); //EngineParsePage.GetGameLink(url);
+            IsPlayable = EngineParsePage.GetGameIsPlayable(page);
+        }
 
+        public string GetComplexName()
+        {
+            string result = BeginDate + " " + Type + " " + Name + " / ";
+            if (IsCommand)
+            {
+                result += " Ком. ";
+            }
+            else
+            {
+                result += " Один ";
+            }
+            if (IsStorm)
+            {
+                result += " Штурм";
+            }
+            else
+            {
+                result += " Линейка";
+            }
+            return result;
         }
     }
 
