@@ -148,6 +148,10 @@ namespace ENS2
             isReady = false;
         }
 
+        /// <summary>
+        /// получает список игр из сведений игрока
+        /// </summary>
+        /// <returns>список GameInfo - информаций об играх, не оконченных/не завершенных</returns>
         public List<GameInfo> GetGames()
         {
             List<GameInfo> result = new List<GameInfo>();
@@ -161,6 +165,11 @@ namespace ENS2
             return result;
         }
 
+        /// <summary>
+        /// по типу игры получает информацию о играх
+        /// </summary>
+        /// <param name="v">номер типа игры</param>
+        /// <returns>список GameInfo - информаций об играх, только не оконченных</returns>
         public List<GameInfo> GetGamesByType(int v)
         {
             List<GameInfo> result = new List<GameInfo>();
@@ -176,15 +185,72 @@ namespace ENS2
             return result;
         }
 
+        /// <summary>
+        /// разбираеи страницу движка со сведениями об играх одного типа из информации об игроке
+        /// </summary>
+        /// <param name="page">страница</param>
+        /// <returns>список строк со ссылками на игры</returns>
         public List<string> GetGamesLinks(string page)
         {
+            // ищем где строки с играми
             List<string> result = new List<string>();
-            int idx = page.IndexOf("/UserDetails.aspx?tab=0&zone=1&uid=");
+            int idx = page.IndexOf("_lnkGameTitle");
             if(idx > 0)
             {
-                string p = page.Substring(idx);
-                int idx1 = p.IndexOf("/GameDetails.aspx?gid=") - 100; // сто символов назад - для наверняка
-                int idx2 = p.LastIndexOf("/GameDetails.aspx?gid=") + 100; // сто символов вперед - для наверняка
+                // находим до строки с игрой начало строки таблицы
+                string t1 = page.Substring(0, idx);
+                idx = t1.LastIndexOf("<tr");
+                if (idx > 0)
+                {
+                    // где они заканчиваются
+                    t1 = page.Substring(idx);
+                    idx = t1.LastIndexOf("_lnkGameTitle");
+                    if (idx > 0)
+                    {
+                        // конец последней строки таблицы
+                        string t2 = t1.Substring(idx);
+                        int idx2 = t2.IndexOf("</tr>");
+                        if (idx2 > 0)
+                        {
+                            // разбиваем по строкам
+                            t2 = t1.Substring(0, idx + idx2);
+                            string[] arr = System.Text.RegularExpressions.Regex.Split(t2, "<tr");
+                            foreach(string tr in arr)
+                            {
+                                // если с строке таблицы есть описание игры
+                                if(tr.IndexOf("_trGameRow") > 0)
+                                {
+                                    // разбиваем  по колонкам
+                                    string[] fields = System.Text.RegularExpressions.Regex.Split(tr, "<td");
+                                    if (fields.Length == 5)
+                                    {
+                                        // проверим уже завершена или нет
+                                        if(fields[3].IndexOf("Место") <= 0)
+                                        {
+                                            // выбираем ссылки
+                                            string[] arr3 = System.Text.RegularExpressions.Regex.Split(fields[4], "href=\"");
+                                            foreach(string link in arr3)
+                                            {
+                                                // выбираем только ссылки на игры (без ссылок на команду/игрока)
+                                                if(link.IndexOf("GameDetails.aspx?gid=") > 0)
+                                                {
+                                                    // вырезаем их и складываем в результат
+                                                    idx = link.IndexOf("\"");
+                                                    if(idx > 0)
+                                                    {
+                                                        result.Add(link.Substring(0, idx));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                /*int idx1 = p.IndexOf("/GameDetails.aspx?gid=") - 100; // сто символов назад - для наверняка
+                //int idx2 = p.LastIndexOf("/GameDetails.aspx?gid=") + 100; // сто символов вперед - для наверняка
                 if((idx1 > 0) && (idx2 > 0) && (idx1 < idx2))
                 {
                     p = p.Substring(idx1, idx2-idx1);
@@ -198,7 +264,7 @@ namespace ENS2
                         }
                     }
 
-                }
+                }*/
 
             }
             return result;
