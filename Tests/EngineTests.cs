@@ -148,11 +148,6 @@ namespace Tests
         }
         */
         /*
-        tselina_en_cx_GameList_zone1_Open
-        tselina_en_cx_GameList_zone3_Blank
-        tselina_en_cx_GameList_zone7_Close
-             
-             */
         [TestMethod]
         public void Engine_GetGamesLinks_1()
         {
@@ -195,6 +190,6 @@ namespace Tests
             List<string> res = EN.GetGamesLinks(page);
             Assert.AreEqual(0, res.Count);
         }
-
+        */
     }
 }

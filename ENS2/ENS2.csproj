@@ -74,6 +74,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Engine.cs" />
+    <Compile Include="EngineParsePage.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="LogonEngineWindow.xaml.cs">
       <DependentUpon>LogonEngineWindow.xaml</DependentUpon>
