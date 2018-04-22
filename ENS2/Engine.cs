@@ -52,22 +52,22 @@ namespace ENS2
 
         public string GetComplexName()
         {
-            string result = BeginDate + " " + Type + " " + Name + " / ";
+            string result = BeginDate + " " + Type + " \"" + Name + "\" / ";
             if (IsCommand)
             {
-                result += " Ком. ";
+                result += "Ком. ";
             }
             else
             {
-                result += " Один ";
+                result += "Один ";
             }
             if (IsStorm)
             {
-                result += " Штурм";
+                result += "Штурм";
             }
             else
             {
-                result += " Линейка";
+                result += "Линейка";
             }
             return result;
         }
@@ -302,5 +302,10 @@ namespace ENS2
             return page;
         }
 
+        public void Disconnect()
+        {
+            IsLoggedInGame = false;
+            IsReady = false;
+        }
     }
 }

@@ -12,9 +12,9 @@
                 <MenuItem Name="MenuItemId_Logon" Header="Выполнить вход..." IsEnabled="True" Click="MenuItem_Engine_Logon_Click"></MenuItem>
                 <MenuItem Name="MenuItemId_Logoff" Header="Выйти из движка" IsEnabled="False" Click="MenuItem_Engine_Logoff_Click"></MenuItem>
                 <Separator />
-                <MenuItem Name="MenuItemId_GameConnect" Header="Подключиться к игре..." IsEnabled="False"></MenuItem>
-                <MenuItem Name="MenuItemId_GameStats" Header="Смотреть статистику" IsEnabled="False"></MenuItem>
-                <MenuItem Name="MenuItemId_GameDisconnect" Header="Отключиться от игры" IsEnabled="False"></MenuItem>
+                <MenuItem Name="MenuItemId_GameConnect" Header="Подключиться к игре..." IsEnabled="False" Click="MenuItem_Engine_Connect_Click"></MenuItem>
+                <MenuItem Name="MenuItemId_GameStats" Header="Смотреть статистику" IsEnabled="False" Click="MenuItem_Engine_Stats_Click"></MenuItem>
+                <MenuItem Name="MenuItemId_GameDisconnect" Header="Отключиться от игры" IsEnabled="False" Click="MenuItem_Engine_Disconnect_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="ЗАДАНИЕ" IsEnabled="False" >
                 <MenuItem Header="Создать новое" ></MenuItem>

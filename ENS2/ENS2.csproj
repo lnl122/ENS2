@@ -61,6 +61,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GameSelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LogonEngineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +79,9 @@
     </Compile>
     <Compile Include="Engine.cs" />
     <Compile Include="EngineParsePage.cs" />
+    <Compile Include="GameSelectWindow.xaml.cs">
+      <DependentUpon>GameSelectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Log.cs" />
     <Compile Include="LogonEngineWindow.xaml.cs">
       <DependentUpon>LogonEngineWindow.xaml</DependentUpon>

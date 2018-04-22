@@ -24,12 +24,19 @@ namespace Tests
             Assert.IsFalse(EN.Logon("полвторого122", "пароль", "game.en.cx"));
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void Engine_GetComplexName_1()
         {
-            GameInfo g1 = new GameInfo();
-            Assert.AreEqual("123", EngineParsePage.GetGameType(page));
+            GameInfo g1 = new GameInfo("http://magnitka.en.cx/GameDetails.aspx?gid=59419");
+            Assert.AreEqual("26.08.2017 22:00:00 Точки \"Загадочная\" / Ком. Линейка", g1.GetComplexName());
         }
+        //[TestMethod]
+        public void Engine_GetComplexName_2()
+        {
+            GameInfo g1 = new GameInfo("http://magadan.en.cx/GameDetails.aspx?gid=60869");
+            Assert.AreEqual("05.03.2018 15:00:00 Мозговой штурм \"Бесконечный МШ\" / Один Линейка", g1.GetComplexName());
+        }
+
         [TestMethod]
         public void Engine_GetGameComplex_1()
         {

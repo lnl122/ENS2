@@ -46,6 +46,34 @@ namespace ENS2
             UpdateActivityMenuItem();
         }
 
+        // открыть модальную форму выбора игры и подключения к ней
+        private void MenuItem_Engine_Connect_Click(object sender, RoutedEventArgs e)
+        {
+            //MenuItem menuItem = (MenuItem)sender;
+            GameSelectWindow gameSelectWindow = new GameSelectWindow
+            {
+                Games = (Engine.Instance).GetGames()
+            };
+            gameSelectWindow.ShowDialog();
+            UpdateActivityMenuItem();
+        }        
+
+        // открыть форму статистики
+        private void MenuItem_Engine_Stats_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Статистика еще не сделана, извините");
+            //MenuItem menuItem = (MenuItem)sender;
+            //LogonEngineWindow LogonWindow = new LogonEngineWindow();
+            //LogonWindow.ShowDialog();
+            UpdateActivityMenuItem();
+        }        
+        // отключиться от игры
+        private void MenuItem_Engine_Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            (Engine.Instance).Disconnect();
+            UpdateActivityMenuItem();
+        }
+
         private void UpdateActivityMenuItem()
         {
             bool isLoggedUser = Engine.IsLoggedUser;
